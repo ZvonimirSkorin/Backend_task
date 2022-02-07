@@ -1,0 +1,22 @@
+doctype html
+html(lang="en")
+  head
+    title= 'Node.js Template'
+    style.
+      span { margin-left: 1rem; }
+      table{text-align:center;}
+      th{padding:0.3rem 1rem;}
+     
+  body
+    table 
+      thead
+          tr
+            th Avatar
+            th First Name
+            th Last Name
+              tbody      
+            each val in locals.props.friends
+                tr 
+                    td.element.item=val.first_name
+                    td.element.item=val.last_name 
+                    td.item=val.nickname

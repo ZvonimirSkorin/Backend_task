@@ -1,0 +1,17 @@
+function funkcija(app, knex) {
+  const path = require("path");
+  const pugRender = require("koa-pug-render");
+
+  app.use(pugRender(path.join(__dirname, "")));
+
+  app.use(async (ctx) => {
+    // Loads template "./views/homepage.pug"
+    await ctx.render("Friends", {
+      props: {
+        friends: await knex.select("*").from("friends"),
+      },
+    });
+  });
+}
+
+module.exports = { funkcija };

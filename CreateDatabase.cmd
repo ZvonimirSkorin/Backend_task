@@ -1,0 +1,1 @@
+cd ./DB/ & knex migrate:latest & knex seed:run & cd ./../ & nodemon index.js
