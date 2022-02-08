@@ -4,7 +4,7 @@ module.exports = async function (ctx, next) {
   if (ctx.request.body.password === "password") {
     ctx.status = 200;
     ctx.body = {
-      token: jwt.sign({ role: "admin" }, "A very secret key", { expiresIn: 60 }),
+      token: jwt.sign({ role: "admin" }, "A very secret key", { expiresIn: 60 * 60 * 60 }),
       message: "Successfully logged in!",
     };
   } else {
