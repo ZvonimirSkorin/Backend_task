@@ -1,41 +1,17 @@
 const Koa = require("koa");
-const router = require("koa-router");
+const router = new (require("koa-router"))();
 const koaBody = require("koa-body");
+const path = require("path");
+const pugRender = require("koa-pug-render");
+
 require("dotenv").config();
 const app = new Koa();
+app.use(pugRender(path.join(__dirname, "/GUI")));
+
 app.use(koaBody());
-const _ = router(); //Instantiate the router
-const knex = require("knex")({
-  client: "pg",
-  connection: {
-    host: process.env.host,
-    port: process.env.port,
-    user: process.env.user,
-    password: process.env.password,
-    database: process.env.database,
-  },
-});
 
-_.get("/friends", async (ctx) => {
-  try {
-    ctx.body = await knex.select("*").from("friends");
-  } catch (error) {
-    ctx.body = error;
-  }
-});
-
-_.post("/friend", async (ctx) => {
-  try {
-    ctx.body = await knex("friends").insert({
-      first_name: ctx.request.body.first_name,
-      last_name: ctx.request.body.last_name,
-      nickname: ctx.request.body.nickname,
-    });
-  } catch (err) {
-    console.log(err);
-    ctx.body = err;
-  }
-});
-
-app.use(_.routes());
+router.use(require("./route/friends").routes());
+router.use(require("./route/friendsUi").routes());
+router.use(require("./route/auth").routes());
+app.use(router.routes());
 app.listen(3000);
