@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-module.exports = async function (ctx, next) {
+module.exports = async function (ctx) {
   if (ctx.request.body.password === "password") {
     ctx.status = 200;
     ctx.body = {

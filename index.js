@@ -15,4 +15,5 @@ router.use(require("./route/friends").routes());
 router.use(require("./route/friendsUi").routes());
 router.use(require("./route/auth").routes());
 app.use(router.routes());
-app.listen(3000);
+
+module.exports = { app };

@@ -2,9 +2,9 @@
   "name": "backend_task",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "nodemon server.js",
     "init_start": "CreateDatabase",
     "test": "jest"
   },
@@ -18,6 +18,7 @@
     "db-migrate-pg": "^1.2.2",
     "dotenv": "^16.0.0",
     "joi": "^17.6.0",
+    "joi-jwt": "^1.0.1",
     "jsonwebtoken": "^8.5.1",
     "knex": "^1.0.2",
     "koa": "^2.13.4",
@@ -32,9 +33,11 @@
     "nodemon": "^2.0.15",
     "pg": "^8.7.3",
     "pug": "^3.0.2",
-    "supertest": "^6.2.2"
+    "supertest": "^6.2.2",
+    "test": "^0.6.0"
   },
   "devDependencies": {
+    "jest": "^27.5.1",
     "mocha": "^9.2.0",
     "ts-jest": "^27.1.3"
   },
