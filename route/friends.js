@@ -1,16 +1,9 @@
 const router = new (require("koa-router"))();
-const friendsRepo = require("../Repo/friends");
 const authenticate = require("../middleware/authenticate.js");
-const { ValidateFriend } = require("../middleware/ValidateUser");
+const friendControler = require("../Controlers/friendsControler.js");
 
-router.get("/friends", authenticate, async (ctx) => (ctx.body = await friendsRepo.getFriends()));
-router.post("/friend", ValidateFriend, authenticate, async (ctx) => (ctx.body = await friendsRepo.addFriend(ctx.request.body, ctx)));
-router.get("/friendsUI", async (ctx) => {
-  await ctx.render("Friends", {
-    props: {
-      friends: await friendsRepo.getFriends(),
-    },
-  });
-});
+router.get("/friends", authenticate, friendControler.getFriends);
+router.post("/friend", authenticate, friendControler.postFriend);
+router.get("/friendsUI", friendControler.getFriendsUI);
 
 module.exports = router;

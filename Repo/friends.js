@@ -4,11 +4,11 @@ async function getFriends() {
   return DB.select("*").from("friends");
 }
 
-async function addFriend(friendData, ctx) {
+async function addFriend({ first_name, last_name, nickname }) {
   return await DB("friends").insert({
-    first_name: friendData.first_name,
-    last_name: friendData.last_name,
-    nickname: friendData.nickname,
+    first_name: first_name,
+    last_name: last_name,
+    nickname: nickname,
   });
 }
 
