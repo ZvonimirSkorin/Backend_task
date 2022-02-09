@@ -1,6 +1,6 @@
 const router = new (require("koa-router"))();
-const authRepo = require("../Repo/auth");
+const authControler = require("../Controlers/authControler");
 
-router.post("/login", authRepo);
+router.post("/login", authControler);
 
 module.exports = router;

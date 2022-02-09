@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 const schema = Joi.object({
-  first_name: Joi.string().min(1).required(),
+  first_name: Joi.string().alphanum().min(1).required(),
   last_name: Joi.string().min(1).required(),
   nickname: Joi.string().optional().allow(null).allow("").empty(""),
 });
